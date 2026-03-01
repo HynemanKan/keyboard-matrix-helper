@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {RouterView, useRouter} from 'vue-router'
-import {ref, watch} from 'vue'
+import {nextTick, onMounted, ref, watch} from 'vue'
 import {darkTheme,NConfigProvider,NNotificationProvider,NFlex,NButton,NGlobalStyle,NSelect} from "naive-ui";
 import {useI18n} from "vue-i18n";
-const {locale} = useI18n();
+const {locale,t} = useI18n();
 const isDark = ref<boolean>(false);
 const lang = ref<string>('zh');
 const i18nOption = [
@@ -19,9 +19,16 @@ const i18nOption = [
 
 watch(lang, (newVal) => {
   locale.value = newVal;
+  nextTick(()=>{
+    document.title = t('global.l_title')
+  })
 })
 
 const router = useRouter();
+
+onMounted(()=>{
+  document.title = t('global.l_title')
+})
 
 </script>
 
