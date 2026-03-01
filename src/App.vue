@@ -51,7 +51,8 @@ onMounted(()=>{
         <RouterView />
         <n-flex justify="center" style="margin: 3px 0">
           <n-text depth="3">
-            keyboard matrix helper 0.2&nbsp;&nbsp;·&nbsp;&nbsp;Made by HynemanKan
+            <n-button text tag="a" href="https://github.com/HynemanKan/keyboard-matrix-helper" target="_blank">keyboard matrix helper 0.2</n-button>
+            &nbsp;&nbsp;·&nbsp;&nbsp;Made by HynemanKan
           </n-text>
         </n-flex>
       </n-flex>
