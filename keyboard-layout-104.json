@@ -1,0 +1,213 @@
+[
+  [
+    "esc",
+    {
+      "x": 1
+    },
+    "f1",
+    "f2",
+    "f3",
+    "f4",
+    {
+      "x": 0.5
+    },
+    "f5",
+    "f6",
+    "f7",
+    "f8",
+    {
+      "x": 0.5
+    },
+    "f9",
+    "f10",
+    "f11",
+    "f12",
+    {
+      "x": 0.25
+    },
+    "prtsc",
+    "scroll_lock",
+    "pause"
+  ],
+  [
+    {
+      "y": 0.5
+    },
+    "~",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "minus",
+    "equal",
+    "backslash",
+    "back",
+    {
+      "x": 0.25
+    },
+    "insert",
+    "home",
+    "pgup",
+    {
+      "x": 0.25
+    },
+    "numlock",
+    "numpad_slash",
+    "numpad_star",
+    "numpad_minus"
+  ],
+  [
+    {
+      "w": 1.5
+    },
+    "tab",
+    "q",
+    "w",
+    "e",
+    "r",
+    "t",
+    "y",
+    "u",
+    "i",
+    "o",
+    "p",
+    "left_brace",
+    "right_brace",
+    {
+      "w": 1.5,
+      "h": 2,
+      "w2": 2.25,
+      "h2": 1,
+      "x2": -0.75,
+      "y2": 1
+    },
+    "enter",
+    {
+      "x": 0.25
+    },
+    "delete",
+    "end",
+    "pgdn",
+    {
+      "x": 0.25
+    },
+    "numpad_7",
+    "numpad_8",
+    "numpad_9",
+    {
+      "h": 2
+    },
+    "numpad_plus"
+  ],
+  [
+    {
+      "w": 1.75
+    },
+    "capslock",
+    "a",
+    "s",
+    "d",
+    "f",
+    "g",
+    "h",
+    "j",
+    "k",
+    "l",
+    "colon",
+    "quote",
+    {
+      "x": 5.75
+    },
+    "numpad_4",
+    "numpad_5",
+    "numpad_6"
+  ],
+  [
+    {
+      "w": 2.25
+    },
+    "left_shift",
+    "z",
+    "x",
+    "c",
+    "v",
+    "b",
+    "n",
+    "m",
+    "comma",
+    "dot",
+    "slash",
+    {
+      "w": 2.75
+    },
+    "right_shift",
+    {
+      "x": 1.25
+    },
+    "up",
+    {
+      "x": 1.25
+    },
+    "numpad_1",
+    "numpad_2",
+    "numpad_3",
+    {
+      "h": 2
+    },
+    "enter"
+  ],
+  [
+    {
+      "w": 1.25
+    },
+    "left_ctrl",
+    {
+      "w": 1.25
+    },
+    "left_win",
+    {
+      "w": 1.25
+    },
+    "left_alt",
+    {
+      "a": 7,
+      "w": 6.25
+    },
+    "space",
+    {
+      "a": 4,
+      "w": 1.25
+    },
+    "right_alt",
+    {
+      "w": 1.25
+    },
+    "right_win",
+    {
+      "w": 1.25
+    },
+    "right_menu",
+    {
+      "w": 1.25
+    },
+    "right_ctrl",
+    {
+      "x": 0.25
+    },
+    "left",
+    "down",
+    "right",
+    {
+      "x": 0.25,
+      "w": 2
+    },
+    "numpad_0",
+    "numpad_dot"
+  ]
+]

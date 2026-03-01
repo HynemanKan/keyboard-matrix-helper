@@ -14,16 +14,21 @@
 	},
 	"dependencies": {
 		"vue": "^3.5.28",
+		"vue-i18n": "^11.2.8",
 		"vue-router": "^5.0.2"
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.25.6",
 		"@tsconfig/node24": "^24.0.4",
 		"@types/node": "^24.10.15",
+		"@vicons/material": "^0.13.0",
 		"@vitejs/plugin-vue": "^6.0.4",
 		"@vue/tsconfig": "^0.8.1",
+		"naive-ui": "^2.43.2",
 		"npm-run-all2": "^8.0.4",
 		"typescript": "~5.9.3",
+		"unplugin-vue-components": "^31.0.0",
+		"vfonts": "^0.0.3",
 		"vite": "^7.3.1",
 		"vite-plugin-vue-devtools": "^8.0.6",
 		"vue-tsc": "^3.2.4",

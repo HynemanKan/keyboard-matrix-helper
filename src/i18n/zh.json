@@ -1,0 +1,41 @@
+{
+  "l_error": "错误",
+  "l_success": "成功",
+  "l_onProblem": "无问题",
+  "b_apply": "应用",
+  "l_option": "操作",
+  "global": {
+    "l_title": "键盘设计辅助工具",
+    "l_light": "浅色",
+    "l_dark": "深色",
+    "l_back": "返回"
+  },
+  "home": {
+    "l_welcome": "欢迎使用键盘设计辅助工具",
+    "l_layoutKeyboard": "设计键盘（外部网站）",
+    "l_layoutMatrix": "设计扫描矩阵"
+  },
+  "matrixLayout": {
+    "l_importLayout": "导入键盘文件",
+    "l_matrixLayout": "设计扫描矩阵",
+    "l_importPlaceholder": "由\"www.keyboard-layout-editor.com\"生成（json格式）",
+    "b_import": "导入",
+    "l_layoutJsonError": "键盘布局数据解析失败，请检查",
+    "l_layoutYNotLineHeadError": "暂不支持行内出现Y参数,Y参数只能出现在每行的头部",
+    "l_importSuccess": "导入成功，进入矩阵设计界面",
+    "l_matrixSize": "矩阵尺寸",
+    "l_matrixSizeTooSmall": "扫描矩阵尺寸过小，无法包含所有按键，请检查",
+    "b_matrixExport": "导入矩阵设计/修改底层数据(json)",
+    "b_matrixImport": "导出矩阵设计(json)",
+    "l_netName": "网络名",
+    "b_download": "下载(json)",
+    "b_saveToClipboard": "复制",
+    "l_savedToClipboard": "已复制到剪切板",
+    "b_uploadFile": "从文件导入",
+    "l_sizeNotMatch": "矩阵{name}轴尺寸与网络名数量不匹配",
+    "l_matrixLineSizeNotEqual": "矩阵数据有误，每行数量不一致",
+    "l_guide": "使用方法",
+    "l_guide_1": "选择键盘上的按钮和矩阵网络名绑定按钮",
+    "l_guide_2": "即可填入矩阵中的对应位置"
+  }
+}
