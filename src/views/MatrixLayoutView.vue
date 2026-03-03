@@ -18,7 +18,7 @@ import {
   NText,NAlert,
   useNotification
 } from "naive-ui";
-import {ArchitectureFilled, CableFilled, ContentCopyFilled, DownloadFilled, UploadFilled,ApiFilled} from "@vicons/material"
+import {ArchitectureFilled, CableFilled, ContentCopyFilled, DownloadFilled, UploadFilled,ApiFilled,AddLocationOutlined} from "@vicons/material"
 import {nextTick, ref, watch} from "vue";
 import {useI18n} from "vue-i18n";
 import type {KeyLine} from "@/type/keyboard.ts";
@@ -151,6 +151,7 @@ const matrixReady = ref<boolean>(false)
 const nowKeySelect = ref<string>("noKeySelect");
 const nowXNetSelect = ref<number>(-1);
 const nowYNetSelect = ref<number>(-1);
+const done = ref<string[]>([]);
 const genMatrix=()=>{
   const nowXNetNames:string[] = [];
   const nowYNetNames:string[] = [];
@@ -192,7 +193,14 @@ const trySetToMatrix=()=>{
       nowKeySelect.value="noKeySelect"
       nowYNetSelect.value=-1
       nowXNetSelect.value=-1
+      done.value=Object.keys(keyMatrixLocation);
   }
+}
+
+const selectBoth = (x:number, y:number) => {
+  nowXNetSelect.value=x
+  nowYNetSelect.value=y
+  trySetToMatrix()
 }
 
 const selectY = (index:number) =>{
@@ -298,6 +306,7 @@ const readData=()=>{
     yNetNames.value=netNameY
     keyMatrixLocation=nowKeyMatrixLocation
     matrixReady.value=true
+    done.value=Object.keys(keyMatrixLocation);
     notify.success({
       "title":t("l_success"),
       "description":t("l_success"),
@@ -341,7 +350,7 @@ const readData=()=>{
   </n-flex>
   <n-flex style="height: 100%;width: 100%;gap: 0" vertical v-else>
     <n-scrollbar style="height: 50%;" x-scrollable>
-      <keyboard :keys="keyboardLayoutData" :resize="55" :max-width="lineMaxWidth" v-model:key-active="nowKeySelect"></keyboard>
+      <keyboard :keys="keyboardLayoutData" :resize="55" :max-width="lineMaxWidth" v-model:key-active="nowKeySelect" :done="done"></keyboard>
     </n-scrollbar>
     <n-flex style="height: 50%;gap: 0;padding: 10px;box-sizing: border-box" justify="space-between">
       <div style="width: 400px">
@@ -427,10 +436,18 @@ const readData=()=>{
               </n-button>
             </td>
             <td v-for="(_,yIndex) in yNetNames">
-              <n-text>{{
+              <n-text v-if="
+              //@ts-ignore
+              matrix[xIndex][yIndex]!==''
+              ">{{
                   //@ts-ignore
                   matrix[xIndex][yIndex]
                 }}</n-text>
+              <n-button @click="selectBoth(xIndex,yIndex)" v-else>
+                <n-icon>
+                  <AddLocationOutlined/>
+                </n-icon>
+              </n-button>
             </td>
           </tr>
           </tbody>
