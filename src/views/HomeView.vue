@@ -11,6 +11,9 @@ const toMatrixLayout = ()=>{
 const toKeyboardLayout = ()=>{
   window.open('https://www.keyboard-layout-editor.com/#/', '_blank');
 }
+const toPlateGen = ()=>{
+  window.open('http://builder.swillkb.com', '_blank');
+}
 
 </script>
 
@@ -24,6 +27,11 @@ const toKeyboardLayout = ()=>{
     <n-card :title="$t('home.l_layoutMatrix')" class="button-like" @click="toMatrixLayout">
       <template #cover>
         <img src="/img/matrixLayout.png" alt="matrix layout">
+      </template>
+    </n-card>
+    <n-card :title="$t('home.l_plateGen')" class="button-like" @click="toPlateGen">
+      <template #cover>
+        <img src="/img/plateGen.png" alt="matrix layout">
       </template>
     </n-card>
   </n-flex>

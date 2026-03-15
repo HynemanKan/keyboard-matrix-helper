@@ -13,7 +13,8 @@
   "home": {
     "l_welcome": "Welcome to the Keyboard Design Assistant Tool",
     "l_layoutKeyboard": "Design Keyboard (External Website)",
-    "l_layoutMatrix": "Design Scan Matrix"
+    "l_layoutMatrix": "Design Scan Matrix",
+    "l_plateGen": "Design Plate (External Website)"
   },
   "matrixLayout": {
     "l_importLayout": "Import Keyboard File",

@@ -13,7 +13,8 @@
   "home": {
     "l_welcome": "欢迎使用键盘设计辅助工具",
     "l_layoutKeyboard": "设计键盘（外部网站）",
-    "l_layoutMatrix": "设计扫描矩阵"
+    "l_layoutMatrix": "设计扫描矩阵",
+    "l_plateGen": "设计定位板（外部网站）"
   },
   "matrixLayout": {
     "l_importLayout": "导入键盘文件",
