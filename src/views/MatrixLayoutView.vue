@@ -47,6 +47,7 @@ const readLayoutFromFile = async () => {
   jsonData.value = await readFromFile(".json")
 }
 
+
 const loadJson = () => {
   try {
     keyCount.value = 0;
@@ -350,7 +351,14 @@ const readData=()=>{
   </n-flex>
   <n-flex style="height: 100%;width: 100%;gap: 0" vertical v-else>
     <n-scrollbar style="height: 50%;" x-scrollable>
-      <keyboard :keys="keyboardLayoutData" :resize="55" :max-width="lineMaxWidth" v-model:key-active="nowKeySelect" :done="done"></keyboard>
+      <keyboard
+          :keys="keyboardLayoutData"
+          :resize="55"
+          :max-width="lineMaxWidth"
+          v-model:key-active="nowKeySelect"
+          :done="done"
+          :error="[]"
+      ></keyboard>
     </n-scrollbar>
     <n-flex style="height: 50%;gap: 0;padding: 10px;box-sizing: border-box" justify="space-between">
       <div style="width: 400px">

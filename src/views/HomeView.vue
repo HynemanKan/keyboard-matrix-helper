@@ -8,6 +8,10 @@ const toMatrixLayout = ()=>{
   router.push("/matrixLayout");
 }
 
+const toMatrixRE = ()=>{
+  router.push("/matrixRE");
+}
+
 const toKeyboardLayout = ()=>{
   window.open('https://www.keyboard-layout-editor.com/#/', '_blank');
 }
@@ -32,6 +36,11 @@ const toPlateGen = ()=>{
     <n-card :title="$t('home.l_plateGen')" class="button-like" @click="toPlateGen">
       <template #cover>
         <img src="/img/plateGen.png" alt="matrix layout">
+      </template>
+    </n-card>
+    <n-card :title="$t('home.l_reverseEngineering')" class="button-like" @click="toMatrixRE">
+      <template #cover>
+        <img src="/img/matrixRE.png" alt="matrix layout">
       </template>
     </n-card>
   </n-flex>

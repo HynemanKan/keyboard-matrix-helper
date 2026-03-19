@@ -6,7 +6,8 @@ const props = defineProps<{
   keys:KeyLine[]
   resize:number
   maxWidth:number
-  done:string[]
+  done:string[],
+  error:string[],
 }>()
 
 const keyActive = defineModel("keyActive")
@@ -27,6 +28,9 @@ const getKeyStyle = (keyLine:KeyItem) => {
 const getButtonType=(keyName:string) =>{
     if(keyName === keyActive.value){
       return "primary"
+    }
+    if(props.error.indexOf(keyName) > -1){
+      return "error"
     }
     return props.done.indexOf(keyName) > -1 ? "info" : "default"
 }

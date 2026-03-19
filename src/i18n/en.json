@@ -14,7 +14,8 @@
     "l_welcome": "Welcome to the Keyboard Design Assistant Tool",
     "l_layoutKeyboard": "Design Keyboard (External Website)",
     "l_layoutMatrix": "Design Scan Matrix",
-    "l_plateGen": "Design Plate (External Website)"
+    "l_plateGen": "Design Plate (External Website)",
+    "l_reverseEngineering": "Keyboard Matrix RE"
   },
   "matrixLayout": {
     "l_importLayout": "Import Keyboard File",

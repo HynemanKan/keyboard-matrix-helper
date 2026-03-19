@@ -1,6 +1,9 @@
 {
   "l_error": "错误",
   "l_success": "成功",
+  "l_warning": "警告",
+  "b_cancel": "取消",
+  "b_confirm": "确认",
   "l_onProblem": "无问题",
   "b_apply": "应用",
   "l_option": "操作",
@@ -14,7 +17,8 @@
     "l_welcome": "欢迎使用键盘设计辅助工具",
     "l_layoutKeyboard": "设计键盘（外部网站）",
     "l_layoutMatrix": "设计扫描矩阵",
-    "l_plateGen": "设计定位板（外部网站）"
+    "l_plateGen": "设计定位板（外部网站）",
+    "l_reverseEngineering": "键盘矩阵逆向分析"
   },
   "matrixLayout": {
     "l_importLayout": "导入键盘文件",
@@ -38,5 +42,15 @@
     "l_guide": "使用方法",
     "l_guide_1": "选择键盘上的按钮和矩阵网络名绑定按钮",
     "l_guide_2": "即可填入矩阵中的对应位置"
+  },
+  "matrixRE":{
+    "l_pinNum": "引脚数量",
+    "l_pinName": "引脚名",
+    "l_keys": "按键",
+    "l_pinKeyBindNotEmpty": "已绑定按键，设置为非矩阵内引脚后将删除所有绑定",
+    "l_pinNotInMatrix": "引脚为非矩阵内引脚",
+    "b_projectImport": "导入工程/修改底层数据(json)",
+    "b_projectExport": "导出工程(json)",
+    "b_exportMatrixData": "导出矩阵设计(json)"
   }
 }
