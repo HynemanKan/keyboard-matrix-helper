@@ -1,6 +1,9 @@
 {
   "l_error": "Error",
   "l_success": "Success",
+  "l_warning": "Warning",
+  "b_cancel": "Cancel",
+  "b_confirm": "Confirm",
   "l_onProblem": "No Issues",
   "b_apply": "Apply",
   "l_option": "Operations",
@@ -39,5 +42,15 @@
     "l_guide": "Usage",
     "l_guide_1": "Select the buttons on the keyboard and bind them to the matrix network names via the button ",
     "l_guide_2":", then they will be filled into the corresponding positions in the matrix"
+  },
+  "matrixRE":{
+    "l_pinNum": "Pin Count",
+    "l_pinName": "Pin Name",
+    "l_keys": "Keys",
+    "l_pinKeyBindNotEmpty": "Keys are already bound. Setting this pin as non-matrix will remove all bindings",
+    "l_pinNotInMatrix": "Pin is not in the matrix",
+    "b_projectImport": "Import Project / Modify Underlying Data (json)",
+    "b_projectExport": "Export Project (json)",
+    "b_exportMatrixData": "Export Matrix Design (json)"
   }
 }
