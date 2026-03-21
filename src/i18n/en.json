@@ -49,8 +49,12 @@
     "l_keys": "Keys",
     "l_pinKeyBindNotEmpty": "Keys are already bound. Setting this pin as non-matrix will remove all bindings",
     "l_pinNotInMatrix": "Pin is not in the matrix",
+    "l_inputFail": "Import failed, please check the data",
     "b_projectImport": "Import Project / Modify Underlying Data (json)",
     "b_projectExport": "Export Project (json)",
-    "b_exportMatrixData": "Export Matrix Design (json)"
+    "b_exportMatrixData": "Export Matrix Design (json)",
+    "l_keyBindTooManyPin": "A key is bound to more than two pins",
+    "l_genMatrixFail": "Failed to reverse-engineer the matrix, please check",
+    "l_genFailKeyHaveOnePinOnly": "Key {keys} has only one pin"
   }
 }
