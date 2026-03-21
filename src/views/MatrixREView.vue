@@ -12,14 +12,15 @@ import {
   NInputNumber,
   NInputGroupLabel,
   NDynamicTags,
+  NModal,
   NScrollbar,
   NTable,
-  NText,
+  NText,NAlert,
   useNotification,useDialog
 } from "naive-ui";
 import {
   ArchitectureFilled, CableFilled, UploadFilled, BorderClearFilled, BorderAllFilled, Brightness1Filled,
-  DownloadFilled,AppRegistrationOutlined
+  DownloadFilled, AppRegistrationOutlined, ContentCopyFilled, ApiFilled
 } from "@vicons/material"
 import {nextTick, onBeforeUpdate, ref, watch} from "vue";
 import {useI18n} from "vue-i18n";
@@ -266,8 +267,23 @@ const ruleCheck=()=>{
   done.value = nowUsed
   isError.value = nowError;
   if(nowError.length==0){
-    const matrixRes = calculateScanMatrix(keyPinBinds.value,reversed.value)
-    console.log(matrixRes);
+    try{
+      const matrixRes = calculateScanMatrix(keyPinBinds.value,reversed.value)
+      console.log("matrix res",matrixRes);
+    }catch(e){
+      console.error(e);
+      notify.error({
+        title:t("l_error"),
+        description:t("matrixRE.l_genMatrixFail"),
+        duration:3000,
+      })
+    }
+  }else{
+    notify.error({
+      title:t("l_error"),
+      description:t("matrixRE.l_keyBindTooManyPin"),
+      duration:3000,
+    })
   }
 }
 
@@ -281,8 +297,118 @@ const keyBind = (keyName:string,pinId:number)=>{
   ruleCheck();
 }
 
-const projectExport = ()=>{
+interface ProjectJson{
+  name:string
+  keyBinds:string[]
+  isMatrixPin:boolean
+}
 
+const rawData = ref<string>("");
+const exportModalShow = ref<boolean>(false);
+const importModalShow = ref<boolean>(false);
+const genMatrixModalShow = ref<boolean>(false);
+
+
+function exportToJson():ProjectJson[]{
+  return pinNames.value.map((name,i)=>({
+    name,
+    keyBinds: pinKeyBinds.value[i]||[],
+    isMatrixPin: !!pinInMatrix.value[i],
+  }))
+}
+
+const toClipboard= async ()=>{
+  await saveToClipboard(rawData.value)
+  notify.success({
+    "title":t("l_success"),
+    "description":t("matrixLayout.l_savedToClipboard"),
+    "duration":3000,
+  })
+}
+
+const toDownload= (fileName:string)=>{
+  console.log(fileName);
+  saveToDownloadFile(rawData.value,`${fileName}.json`)
+}
+
+function loadFromJson(data:ProjectJson[]):void{
+  if(data.length>100){
+    throw Error("pin to much")
+  }
+  pinNames.value = data.map(p=>p.name)
+  pinKeyBinds.value = data.map(p=>[...p.keyBinds])
+  pinInMatrix.value = data.map(p=>p.isMatrixPin)
+  //@ts-ignore
+  pinColors.value = data.map((_,i)=>GLOBAL_COLOR_SET[i])
+  pinNum.value = data.length
+  // rebuild keyPinBinds from pin data
+  const newKeyPinBinds:{[key:string]:number[]} = {}
+  data.forEach((p,i)=>{
+    for(const key of p.keyBinds){
+      if(!newKeyPinBinds[key]) newKeyPinBinds[key]=[]
+      newKeyPinBinds[key].push(i)
+    }
+  })
+  keyPinBinds.value = newKeyPinBinds
+  oldPinKeyBinds = JSON.parse(JSON.stringify(pinKeyBinds.value))
+  ruleCheck()
+}
+const loadFromFile= async ()=>{
+  rawData.value = await readFromFile(".json")
+}
+
+const readData=()=>{
+  try{
+    const data: ProjectJson[]= JSON.parse(rawData.value);
+    loadFromJson(data);
+    importModalShow.value=false;
+  }catch(err){
+    notify.error({
+      title:t("l_error"),
+      description:t("matrixRE.l_inputFail"),
+      duration:3000,
+    })
+  }
+}
+
+const callImport = ()=>{
+  rawData.value=JSON.stringify(exportToJson())
+  importModalShow.value=true;
+}
+
+const callExport = ()=>{
+  rawData.value=JSON.stringify(exportToJson())
+  exportModalShow.value=true;
+}
+
+const genSuccess = ref<boolean>(false);
+const genMessage = ref<string>("");
+
+const callGenMatrix=()=>{
+  try{
+    const matrixRes = calculateScanMatrix(keyPinBinds.value,reversed.value)
+    if(matrixRes.missingKey.length>0){
+      genSuccess.value=false;
+      genMessage.value=t("matrixRE.l_genFailKeyHaveOnePinOnly",{
+        keys:matrixRes.missingKey.map(x=>`"${x}"`).join(", "),
+      })
+      genMatrixModalShow.value=true;
+      return;
+    }
+    const exportData ={
+      "matrix":matrixRes.matrix,
+      "xNet": matrixRes.x.map(index=>pinNames.value[index]),
+      "yNet": matrixRes.y.map(index=>pinNames.value[index]),
+    }
+    genSuccess.value=true;
+    rawData.value=JSON.stringify(exportData)
+    genMatrixModalShow.value=true;
+  }catch(err){
+    genSuccess.value=false;
+    genMessage.value=t("matrixRE.l_genMatrixFail")
+    genMatrixModalShow.value=true;
+    return;
+  }
 }
 
 </script>
@@ -333,7 +459,7 @@ const projectExport = ()=>{
         </n-form-item>
         <n-form-item :label="$t('l_option')">
           <n-flex vertical>
-            <n-button type="primary">
+            <n-button type="primary" @click="callImport">
               <template #icon>
                 <n-icon>
                   <DownloadFilled/>
@@ -341,7 +467,7 @@ const projectExport = ()=>{
               </template>
               {{$t("matrixRE.b_projectImport")}}
             </n-button>
-            <n-button type="info">
+            <n-button type="info" @click="callExport">
               <template #icon>
                 <n-icon>
                   <upload-filled/>
@@ -349,7 +475,7 @@ const projectExport = ()=>{
               </template>
               {{$t("matrixRE.b_projectExport")}}
             </n-button>
-            <n-button type="info">
+            <n-button type="info" @click="callGenMatrix">
               <template #icon>
                 <n-icon>
                   <app-registration-outlined/>
@@ -413,6 +539,76 @@ const projectExport = ()=>{
       </div>
     </n-flex>
   </n-flex>
+  <n-modal v-model:show="exportModalShow" preset="card" :title="$t('matrixLayout.b_matrixImport')">
+    <n-input disabled type="textarea" v-model:value="rawData"/>
+    <n-flex justify="right">
+      <n-button type="primary" @click="toDownload('matrixRE')">
+        <template #icon>
+          <n-icon>
+            <downloadFilled/>
+          </n-icon>
+        </template>
+        {{$t("matrixLayout.b_download")}}
+      </n-button>
+      <n-button type="primary" @click="toClipboard">
+        <template #icon>
+          <n-icon>
+            <content-copy-filled/>
+          </n-icon>
+        </template>
+        {{$t("matrixLayout.b_saveToClipboard")}}
+      </n-button>
+    </n-flex>
+  </n-modal>
+  <n-modal v-model:show="importModalShow" preset="card" :title="$t('matrixLayout.b_matrixImport')">
+    <n-input type="textarea" v-model:value="rawData"/>
+    <n-flex justify="right">
+      <n-button type="primary" @click="loadFromFile">
+        <template #icon>
+          <n-icon>
+            <UploadFilled/>
+          </n-icon>
+        </template>
+        {{$t("matrixLayout.b_uploadFile")}}
+      </n-button>
+      <n-button type="primary" @click="readData">
+        <template #icon>
+          <n-icon>
+            <ApiFilled/>
+          </n-icon>
+        </template>
+        {{$t("matrixLayout.b_import")}}
+      </n-button>
+    </n-flex>
+  </n-modal>
+  <n-modal v-model:show="genMatrixModalShow" preset="card" :title="$t('matrixLayout.b_matrixImport')">
+    <div v-if="genSuccess">
+      <n-input disabled type="textarea" v-model:value="rawData"></n-input>
+      <n-flex justify="right">
+        <n-button type="primary" @click="toDownload('matrixData')">
+          <template #icon>
+            <n-icon>
+              <downloadFilled/>
+            </n-icon>
+          </template>
+          {{$t("matrixLayout.b_download")}}
+        </n-button>
+        <n-button type="primary" @click="toClipboard">
+          <template #icon>
+            <n-icon>
+              <content-copy-filled/>
+            </n-icon>
+          </template>
+          {{$t("matrixLayout.b_saveToClipboard")}}
+        </n-button>
+      </n-flex>
+    </div>
+    <div v-else>
+      <n-alert :title="$t('l_error')" type="error">
+        {{genMessage}}
+      </n-alert>
+    </div>
+  </n-modal>
 </template>
 
 <style>

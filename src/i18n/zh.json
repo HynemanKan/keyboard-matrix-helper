@@ -49,8 +49,12 @@
     "l_keys": "按键",
     "l_pinKeyBindNotEmpty": "已绑定按键，设置为非矩阵内引脚后将删除所有绑定",
     "l_pinNotInMatrix": "引脚为非矩阵内引脚",
+    "l_inputFail": "导入失败，请检查数据",
     "b_projectImport": "导入工程/修改底层数据(json)",
     "b_projectExport": "导出工程(json)",
-    "b_exportMatrixData": "导出矩阵设计(json)"
+    "b_exportMatrixData": "导出矩阵设计(json)",
+    "l_keyBindTooManyPin": "单个按键绑定了超过两个引脚",
+    "l_genMatrixFail": "逆解析矩阵失败,请检查",
+    "l_genFailKeyHaveOnePinOnly": "{keys}按键只有一个引脚"
   }
 }
